@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+    poc-base:
+        build:
+            context: .
+            cache_from:
+                - nginx:latest
+        container_name: poc-base
+    poc-deploy: 
+        image: swagger-react_poc-base:latest
+        ports: 
+            - 8080:80
+        environment: 
+            - BASE_URL=/swagger
+        container_name: swagger-poc
+        command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    
