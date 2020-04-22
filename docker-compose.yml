@@ -10,8 +10,6 @@ services:
         image: swagger-react_poc-base:latest
         ports: 
             - 8080:80
-        environment: 
-            - BASE_URL=/swagger
         container_name: swagger-poc
         command: /bin/bash -c "exec nginx -g 'daemon off;'"
     

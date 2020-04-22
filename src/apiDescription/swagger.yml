@@ -1,0 +1,108 @@
+openapi: "3.0.0"
+info:
+    title: test
+    description: test sur la description
+    version: "2"
+servers:
+    - url: http://jsonplaceholder.typicode.com
+paths:
+    /users:
+        get:
+            tags:
+                - User
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                allOf:
+                                items:
+                                    type: object
+                                    items:
+                                        $ref: '#/components/schemas/User/properties'
+        post:
+            tags:
+                - User
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User/properties'
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User/properties'
+    /users/{id}:
+        get:
+            tags:
+                - User
+            description: récupere les datas de l'user avec l'id
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                items:
+                                    $ref: '#/components/schemas/User/properties'
+
+components:
+    schemas:
+        User:
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                username:
+                    type: string
+                email:
+                    type: string
+                address:
+                    type: object
+                    properties:
+                        street:
+                            type: string
+                        suite:
+                            type: string
+                        city:
+                            type: string
+                        zipcode:
+                            type: string
+                        geo:
+                            type: object
+                            properties:
+                                lat:
+                                    type: string
+                                lng:
+                                    type: string
+                phone:
+                    type: string
+                website:
+                    type: string
+                company:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                        catchPhrase:
+                            type: string
+                        bs:
+                            type: string 
+                                
+                      
+            
+
